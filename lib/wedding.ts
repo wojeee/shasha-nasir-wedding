@@ -22,16 +22,18 @@ export const wedding = {
   },
   about: {
     heading: "About Us",
-    bride: {
-      name: "Shasha",
-      title: "The Bride",
-      bio: "A warm soul with a quiet strength — she fills every room with kindness and laughter. Placeholder bio until the real story arrives.",
-    },
-    groom: {
-      name: "Nasir",
-      title: "The Groom",
-      bio: "Steady, thoughtful, and full of heart — he meets life with humour and devotion. Placeholder bio until the real story arrives.",
-    },
+    howTheyMet:
+      "Their paths crossed when a quiet hello became an easy conversation — and then many more. Through shared laughter, late-night talks, and little adventures, friendship deepened into something lasting. This is the beginning of their forever. (Placeholder — real story coming soon.)",
+    galleryTop: [
+      "/images/photo-1.jpg",
+      "/images/photo-2.jpg",
+      "/images/photo-3.jpg",
+    ],
+    galleryBottom: [
+      "/images/photo-4.jpg",
+      "/images/photo-5.jpg",
+      "/images/photo-6.jpg",
+    ],
   },
   cta: {
     heading: "We Cannot Wait To Celebrate With You",
