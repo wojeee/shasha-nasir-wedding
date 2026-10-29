@@ -13,21 +13,30 @@ type Wish = {
 export function WishesCarousel() {
   const [wishes, setWishes] = useState<Wish[]>([...wedding.seedWishes]);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
 
     async function load() {
       try {
-        const res = await fetch("/api/wishes");
+        const res = await fetch("/api/wishes", { cache: "no-store" });
         if (!res.ok) return;
         const data = (await res.json()) as { wishes?: Wish[] };
-        if (!cancelled && data.wishes && data.wishes.length > 0) {
-          setWishes(data.wishes);
+        const fromSheet = (data.wishes ?? []).filter(
+          (w) =>
+            typeof w?.name === "string" &&
+            typeof w?.message === "string" &&
+            w.message.trim().length > 0,
+        );
+        if (!cancelled && fromSheet.length > 0) {
+          setWishes(fromSheet);
           setIndex(0);
         }
       } catch {
         // Keep seed wishes on failure
+      } finally {
+        if (!cancelled) setLoading(false);
       }
     }
 
@@ -38,11 +47,11 @@ export function WishesCarousel() {
   }, []);
 
   const next = useCallback(() => {
-    setIndex((i) => (i + 1) % wishes.length);
+    setIndex((i) => (i + 1) % Math.max(wishes.length, 1));
   }, [wishes.length]);
 
   const prev = useCallback(() => {
-    setIndex((i) => (i - 1 + wishes.length) % wishes.length);
+    setIndex((i) => (i - 1 + wishes.length) % Math.max(wishes.length, 1));
   }, [wishes.length]);
 
   useEffect(() => {
@@ -51,7 +60,7 @@ export function WishesCarousel() {
     return () => window.clearInterval(id);
   }, [next, wishes.length]);
 
-  const current = wishes[index];
+  const current = wishes[index] ?? wishes[0];
 
   return (
     <section className="relative overflow-hidden px-6 py-24 sm:py-28">
@@ -73,24 +82,30 @@ export function WishesCarousel() {
         </Reveal>
 
         <Reveal delay={0.1} className="mt-12">
-          <div className="relative min-h-[180px] px-4 sm:px-10">
-            <AnimatePresence mode="wait">
-              <motion.figure
-                key={`${current.name}-${index}`}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col items-center"
-              >
-                <blockquote className="font-serif text-xl leading-relaxed text-[var(--deep-taupe)] sm:text-2xl">
-                  “{current.message}”
-                </blockquote>
-                <figcaption className="mt-6 font-sans text-xs uppercase tracking-[0.28em] text-[var(--warm-beige)]">
-                  — {current.name}
-                </figcaption>
-              </motion.figure>
-            </AnimatePresence>
+          <div
+            className={`relative min-h-[180px] px-4 sm:px-10 transition-opacity duration-300 ${
+              loading ? "opacity-60" : "opacity-100"
+            }`}
+          >
+            {current ? (
+              <AnimatePresence mode="wait">
+                <motion.figure
+                  key={`${current.name}-${index}-${current.message.slice(0, 24)}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col items-center"
+                >
+                  <blockquote className="font-serif text-xl leading-relaxed text-[var(--deep-taupe)] sm:text-2xl">
+                    “{current.message}”
+                  </blockquote>
+                  <figcaption className="mt-6 font-sans text-xs uppercase tracking-[0.28em] text-[var(--warm-beige)]">
+                    — {current.name}
+                  </figcaption>
+                </motion.figure>
+              </AnimatePresence>
+            ) : null}
           </div>
 
           <div className="mt-8 flex items-center justify-center gap-6">

@@ -56,9 +56,13 @@ function getWishes() {
     var row = values[i];
     var guestName = String(row[1] || "").trim();
     var message = String(row[5] || "").trim();
-    var display = String(row[6] || "").toUpperCase();
+    var displayRaw = row[6];
+    var display = String(displayRaw == null ? "" : displayRaw)
+      .trim()
+      .toUpperCase();
     if (!message) continue;
-    if (display !== "TRUE" && display !== "YES") continue;
+    // Supports TRUE / YES text, or a Sheets checkbox (boolean true)
+    if (displayRaw !== true && display !== "TRUE" && display !== "YES") continue;
     wishes.push({ name: guestName || "Guest", message: message });
   }
 
