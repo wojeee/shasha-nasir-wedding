@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --deep-taupe: #54422c;
+  --warm-beige: #b58d62;
+  --soft-gold: #caa67c;
+  --champagne: #f6e4cc;
+  --white: #ffffff;
+
+  --background: var(--champagne);
+  --foreground: var(--deep-taupe);
+}
+
+@theme inline {
+  --color-deep-taupe: var(--deep-taupe);
+  --color-warm-beige: var(--warm-beige);
+  --color-soft-gold: var(--soft-gold);
+  --color-champagne: var(--champagne);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-cormorant);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--soft-gold) 55%, transparent);
+  color: var(--deep-taupe);
+}
+
+.font-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--soft-gold),
+    transparent
+  );
+}
