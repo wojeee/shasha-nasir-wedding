@@ -13,15 +13,15 @@ export const wedding = {
   },
   words: {
     quote:
-      "Two souls, one heart — walking forward together in love, faith, and joy.",
-    attribution: "With love",
+      "And we created you in pairs.",
+    attribution: "An-Naba' 78:8",
   },
   invite: {
     heading: "We Invite You",
     body: "With love and happiness, we sincerely invite you to attend and bless our wedding celebration.",
   },
   about: {
-    heading: "About Us",
+    heading: "Our Story",
     howTheyMet:
       "Their paths crossed when a quiet hello became an easy conversation — and then many more. Through shared laughter, late-night talks, and little adventures, friendship deepened into something lasting. This is the beginning of their forever. (Placeholder — real story coming soon.)",
     galleryTop: [
