@@ -18,6 +18,11 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Shasha & Nasir — Wedding",
   description: "You are invited to the wedding of Shasha & Nasir.",
+  icons: {
+    icon: [{ url: "/images/favicon-sn.svg", type: "image/svg+xml" }],
+    shortcut: "/images/favicon-sn.svg",
+    apple: "/images/favicon-sn.svg",
+  },
 };
 
 export default function RootLayout({

@@ -27,7 +27,7 @@ export const wedding = {
     honorifics: "Datuk/Dato'/Datin/Tuan/Puan/Encik/Cik",
     ceremonyLine: "to the wedding ceremony of our beloved children.",
     brideName: "Nur Aisyah Nabilla Abdullah",
-    groomName: "Nasir Taha",
+    groomName: "Muhammad Nasiruddin Taha",
   },
   about: {
     heading: "Our Story",
