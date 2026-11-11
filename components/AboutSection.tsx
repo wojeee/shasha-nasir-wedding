@@ -57,9 +57,11 @@ export function AboutSection() {
           <p className="font-sans text-[0.65rem] uppercase tracking-[0.35em] text-[var(--warm-beige)]">
             How We Met
           </p>
-          <p className="mt-6 font-serif text-lg leading-relaxed text-[var(--deep-taupe)]/85 sm:text-xl">
-            {wedding.about.howTheyMet}
-          </p>
+          <div className="mt-6 space-y-5 font-serif text-lg leading-relaxed text-[var(--deep-taupe)]/85 sm:text-xl">
+            {wedding.about.story.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            ))}
+          </div>
         </Reveal>
       </div>
 

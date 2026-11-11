@@ -7,6 +7,7 @@ import { useRsvp } from "@/components/RsvpProvider";
 
 export function InviteSection() {
   const { openRsvp } = useRsvp();
+  const { invite, venue } = wedding;
 
   return (
     <section className="relative overflow-hidden px-6 py-24 sm:py-32 md:min-h-[90vh] md:py-36">
@@ -29,43 +30,83 @@ export function InviteSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex max-w-xl flex-col items-center text-center">
-        <Reveal>
-          <p className="font-sans text-[0.65rem] uppercase tracking-[0.35em] text-[var(--soft-gold)]">
-            Celebrate With Us
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+        <Reveal className="max-w-xl">
+          <p className="font-serif text-2xl text-white drop-shadow-md sm:text-3xl">
+            Assalammualaikum wbt.
           </p>
-          <h2 className="mt-4 font-serif text-4xl text-white drop-shadow-md sm:text-5xl">
-            {wedding.invite.heading}
-          </h2>
-          <p className="mt-6 font-serif text-lg leading-relaxed text-white/90 drop-shadow-sm">
-            {wedding.invite.body}
-          </p>
+
+          <div className="mt-8 space-y-3 font-serif text-base leading-relaxed text-white/90 drop-shadow-sm sm:text-lg">
+            <p>{invite.hosts.sideOne}</p>
+            <p className="text-sm italic text-[var(--soft-gold)] sm:text-base">
+              {invite.hosts.togetherWith}
+            </p>
+            <p>{invite.hosts.sideTwo}</p>
+            <p className="pt-2">{invite.gratitude}</p>
+            <p className="font-sans text-xs uppercase tracking-[0.18em] text-[var(--champagne)] sm:text-sm">
+              {invite.honorifics}
+            </p>
+            <p>{invite.ceremonyLine}</p>
+            <div className="pt-4">
+              <p className="font-serif text-3xl text-white sm:text-4xl">
+                {invite.brideName}
+              </p>
+              <p className="my-2 font-serif text-lg italic text-[var(--soft-gold)]">
+                and
+              </p>
+              <p className="font-serif text-3xl text-white sm:text-4xl">
+                {invite.groomName}
+              </p>
+            </div>
+          </div>
         </Reveal>
 
         <Reveal delay={0.12} className="mt-12 w-full">
-          <div className="border border-white/35 bg-[var(--deep-taupe)]/45 px-8 py-10 backdrop-blur-[2px]">
-            <p className="font-serif text-2xl text-white sm:text-3xl">
-              {wedding.dateDisplay}
-            </p>
-            <p className="mt-3 font-sans text-sm tracking-wide text-[var(--soft-gold)]">
-              {wedding.timeDisplay}
-            </p>
-            <div
-              className="mx-auto my-6 h-px w-12"
-              style={{
-                background:
-                  "linear-gradient(90deg, transparent, #F6E4CC, transparent)",
-              }}
-            />
-            <p className="font-serif text-xl text-white">{wedding.venue.name}</p>
-            <p className="mt-2 font-sans text-sm text-white/75">
-              {wedding.venue.address}
-            </p>
+          <div className="border border-[var(--soft-gold)]/50 bg-[var(--deep-taupe)]/55 px-6 py-10 shadow-xl backdrop-blur-[2px] sm:px-12 md:px-16">
+            <dl className="space-y-5 text-center">
+              <div>
+                <dt className="font-sans text-[0.65rem] uppercase tracking-[0.28em] text-[var(--soft-gold)]">
+                  Date
+                </dt>
+                <dd className="mt-1.5 font-serif text-xl text-white sm:text-2xl">
+                  {wedding.dateDisplay}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-sans text-[0.65rem] uppercase tracking-[0.28em] text-[var(--soft-gold)]">
+                  Time
+                </dt>
+                <dd className="mt-1.5 font-serif text-xl text-white sm:text-2xl">
+                  {wedding.timeDisplay}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-sans text-[0.65rem] uppercase tracking-[0.28em] text-[var(--soft-gold)]">
+                  Venue
+                </dt>
+                <dd className="mt-1.5 font-serif text-xl text-white sm:text-2xl">
+                  {venue.name}
+                </dd>
+                {venue.address ? (
+                  <dd className="mt-1 font-sans text-sm text-white/80">
+                    {venue.address}
+                  </dd>
+                ) : null}
+              </div>
+              <div>
+                <dt className="font-sans text-[0.65rem] uppercase tracking-[0.28em] text-[var(--soft-gold)]">
+                  Dress Code
+                </dt>
+                <dd className="mt-1.5 font-serif text-xl text-white sm:text-2xl">
+                  {wedding.dressCode}
+                </dd>
+              </div>
+            </dl>
             <a
-              href={wedding.venue.mapUrl}
+              href={venue.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block font-sans text-xs uppercase tracking-[0.22em] text-[var(--champagne)] underline-offset-4 transition hover:text-white hover:underline"
+              className="mt-8 inline-block font-sans text-xs uppercase tracking-[0.22em] text-[var(--champagne)] underline-offset-4 transition hover:text-white hover:underline"
             >
               View Map
             </a>

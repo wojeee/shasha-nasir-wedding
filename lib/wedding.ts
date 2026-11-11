@@ -3,27 +3,38 @@ export const wedding = {
   groom: "Nasir",
   coupleNames: "Shasha & Nasir",
   tagline: "The Wedding Of",
-  dateDisplay: "Saturday, 00 Month 2027",
-  dateShort: "00 . 00 . 2027",
-  timeDisplay: "11:00 AM – 4:00 PM",
+  dateDisplay: "Sunday, 17 January 2027",
+  dateShort: "17 . 01 . 2027",
+  timeDisplay: "10:00 AM – 1:00 PM",
+  dressCode: "White / Ivory",
   venue: {
-    name: "Venue TBA",
-    address: "Address to be announced",
-    mapUrl: "https://maps.google.com",
+    name: "Baitulmal Hall",
+    address: "",
+    mapUrl: "https://maps.google.com/?q=Baitulmal+Hall",
   },
   words: {
-    quote:
-      "And we created you in pairs.",
+    quote: "And we created you in pairs.",
     attribution: "An-Naba' 78:8",
   },
   invite: {
-    heading: "We Invite You",
-    body: "With love and happiness, we sincerely invite you to attend and bless our wedding celebration.",
+    hosts: {
+      sideOne: "Ronda Manan & family",
+      togetherWith: "Together with",
+      sideTwo: "Taha Bin Halit & Norhayatie Binti Ojit",
+    },
+    gratitude:
+      "With utmost gratitude to the Almighty, we are pleased and honored to cordially invite",
+    honorifics: "Datuk/Dato'/Datin/Tuan/Puan/Encik/Cik",
+    ceremonyLine: "to the wedding ceremony of our beloved children.",
+    brideName: "Nur Aisyah Nabilla Abdullah",
+    groomName: "Nasir Taha",
   },
   about: {
     heading: "Our Story",
-    howTheyMet:
-      "Their paths crossed when a quiet hello became an easy conversation — and then many more. Through shared laughter, late-night talks, and little adventures, friendship deepened into something lasting. This is the beginning of their forever. (Placeholder — real story coming soon.)",
+    story: [
+      "Some love stories begin with a grand moment; ours began with a simple meeting and grew through countless conversations, shared laughter and unwavering support. Along the journey, we discovered not only love, but also friendship, trust and a shared vision for the future.",
+      "Written by Allah, nurtured with love and blessed with faith, our two hearts have found their forever home in each other.",
+    ],
     galleryTop: [
       "/images/photo-1.jpg",
       "/images/photo-2.jpg",
