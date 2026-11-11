@@ -2,10 +2,13 @@
 
 import { wedding } from "@/lib/wedding";
 
+const heroVideoUrl =
+  process.env.NEXT_PUBLIC_HERO_VIDEO_URL ?? "/video/hero.mp4";
+
 export function VideoHero() {
   return (
     <section className="relative flex h-dvh min-h-[100svh] w-full items-end justify-center overflow-hidden">
-      {/* Placeholder visual until real looping video is provided */}
+      {/* Fallback wash while video loads */}
       <div
         className="absolute inset-0"
         aria-hidden
@@ -14,25 +17,18 @@ export function VideoHero() {
             "linear-gradient(180deg, #CAA67C 0%, #B58D62 45%, #54422C 100%)",
         }}
       />
-      <div
-        className="absolute inset-0 opacity-50"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 50% 30%, rgba(246,228,204,0.35), transparent 60%)",
-        }}
-      />
+
       <video
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         poster="/images/hero-poster.svg"
         aria-label="Wedding highlight video"
       >
-        {/* Drop a real MP4 at /public/video/hero.mp4 when ready */}
-        <source src="/video/hero.mp4" type="video/mp4" />
+        <source src={heroVideoUrl} type="video/mp4" />
       </video>
 
       <div className="absolute inset-0 bg-gradient-to-t from-[var(--deep-taupe)]/75 via-transparent to-[var(--deep-taupe)]/20" />

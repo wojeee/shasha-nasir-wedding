@@ -22,11 +22,11 @@ When ready, drop media here:
 
 | Asset | Path |
 |-------|------|
-| Hero loop video | `public/video/hero.mp4` |
+| Hero loop video | Upload to **Vercel Blob (public)** and set `NEXT_PUBLIC_HERO_VIDEO_URL` |
 | Hero poster (optional) | `public/images/hero-poster.svg` (replace with JPG/PNG) |
-| About portraits | Update `AboutSection` to use real images under `public/images/` |
+| About photos | `public/images/photo-1.jpg` … `photo-6.jpg` |
 
-After adding `hero.mp4`, remove `hidden` from the `<video>` in [`components/VideoHero.tsx`](components/VideoHero.tsx) (or swap the gradient placeholder for the video).
+Local fallback still works with `public/video/hero.mp4` if the env var is unset.
 
 ## Google Sheets + Apps Script
 
