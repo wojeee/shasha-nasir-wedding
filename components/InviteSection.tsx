@@ -48,13 +48,13 @@ export function InviteSection() {
             </p>
             <p>{invite.ceremonyLine}</p>
             <div className="pt-4">
-              <p className="font-serif text-3xl text-white sm:text-4xl">
+              <p className="font-serif text-xl text-white sm:text-2xl">
                 {invite.brideName}
               </p>
               <p className="my-2 font-serif text-lg italic text-[var(--soft-gold)]">
                 and
               </p>
-              <p className="font-serif text-3xl text-white sm:text-4xl">
+              <p className="font-serif text-xl text-white sm:text-2xl">
                 {invite.groomName}
               </p>
             </div>
@@ -99,6 +99,18 @@ export function InviteSection() {
                 </dt>
                 <dd className="mt-1.5 font-serif text-xl text-white sm:text-2xl">
                   {wedding.dressCode}
+                </dd>
+                <dd className="mt-3 flex items-center justify-center gap-3">
+                  <span
+                    className="inline-block size-7 rounded-full border border-white/40 bg-white shadow-sm"
+                    role="img"
+                    aria-label="White"
+                  />
+                  <span
+                    className="inline-block size-7 rounded-full border border-white/40 bg-[#FFFFF0] shadow-sm"
+                    role="img"
+                    aria-label="Ivory"
+                  />
                 </dd>
               </div>
             </dl>
