@@ -3,7 +3,8 @@
  *
  * Setup:
  * 1. Create a Google Sheet with header row:
- *    Timestamp | Guest Name | Contact | Plus One | Plus One Name | Wishes | Display Wish
+ *    Timestamp | Guest Name | Contact | Plus One | Plus One Name | Wishes | Display Wish | Party Size | Guest 2 | Guest 3 | Guest 4
+ *    Keep Wishes and Display Wish in columns F and G so existing rows still show in the carousel.
  * 2. Extensions → Apps Script → paste this file.
  * 3. Set SHEET_NAME if your tab is not "Sheet1".
  * 4. Deploy → New deployment → Web app
@@ -29,15 +30,32 @@ function doPost(e) {
       data = JSON.parse(e.postData.contents);
     }
 
+    var companions = [];
+    if (data.companionNames && data.companionNames.length) {
+      companions = data.companionNames;
+    }
+    while (companions.length < 3) companions.push("");
+    companions = companions.slice(0, 3);
+
+    var namedCompanions = companions.filter(function (name) {
+      return String(name || "").trim();
+    });
+    var plusOneName =
+      data.plusOneName || namedCompanions.join(", ");
+
     var sheet = getSheet_();
     sheet.appendRow([
       data.timestamp || new Date().toISOString(),
       data.guestName || "",
       data.contact || "",
-      data.plusOne || "No",
-      data.plusOneName || "",
+      data.plusOne || (namedCompanions.length ? "Yes" : "No"),
+      plusOneName,
       data.wishes || "",
       data.displayWish || (data.wishes ? "TRUE" : "FALSE"),
+      data.partySize || 1 + namedCompanions.length,
+      companions[0] || "",
+      companions[1] || "",
+      companions[2] || "",
     ]);
 
     return jsonResponse({ ok: true });

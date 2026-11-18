@@ -14,11 +14,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
+  const partySize = Number(body.partySize);
+  const rawCompanions = Array.isArray(body.companions) ? body.companions : [];
+
   const input: RsvpInput = {
     guestName: typeof body.guestName === "string" ? body.guestName : "",
     contact: typeof body.contact === "string" ? body.contact : "",
-    plusOne: Boolean(body.plusOne),
-    plusOneName: typeof body.plusOneName === "string" ? body.plusOneName : "",
+    partySize: Number.isFinite(partySize) ? partySize : 0,
+    companions: rawCompanions.map((name) =>
+      typeof name === "string" ? name : "",
+    ),
     wishes: typeof body.wishes === "string" ? body.wishes : "",
   };
 
@@ -51,10 +56,12 @@ export async function POST(request: Request) {
         timestamp: new Date().toISOString(),
         guestName: payload.guestName,
         contact: payload.contact,
-        plusOne: payload.plusOne ? "Yes" : "No",
-        plusOneName: payload.plusOneName,
+        plusOne: payload.companions.length > 0 ? "Yes" : "No",
+        plusOneName: payload.companions.join(", "),
         wishes: payload.wishes,
         displayWish: payload.wishes ? "TRUE" : "FALSE",
+        partySize: payload.partySize,
+        companionNames: payload.companions,
       }),
       redirect: "follow",
     });

@@ -10,6 +10,7 @@ import {
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useRsvp } from "@/components/RsvpProvider";
 import {
+  MAX_PARTY_SIZE,
   normalizeRsvp,
   validateRsvp,
   type RsvpErrors,
@@ -19,8 +20,8 @@ import {
 const initialForm: RsvpInput = {
   guestName: "",
   contact: "",
-  plusOne: false,
-  plusOneName: "",
+  partySize: 1,
+  companions: [],
   wishes: "",
 };
 
@@ -190,60 +191,67 @@ function RsvpDialog({
               />
             </Field>
 
-            <fieldset>
-              <legend className="mb-2 font-sans text-xs uppercase tracking-[0.2em] text-[var(--warm-beige)]">
-                Plus one?
-              </legend>
-              <div className="flex gap-4">
-                <label className="flex cursor-pointer items-center gap-2 font-serif text-base text-[var(--deep-taupe)]">
-                  <input
-                    type="radio"
-                    name="plusOne"
-                    checked={!form.plusOne}
-                    onChange={() =>
-                      setForm((f) => ({
-                        ...f,
-                        plusOne: false,
-                        plusOneName: "",
-                      }))
-                    }
-                    className="accent-[var(--deep-taupe)]"
-                  />
-                  No
-                </label>
-                <label className="flex cursor-pointer items-center gap-2 font-serif text-base text-[var(--deep-taupe)]">
-                  <input
-                    type="radio"
-                    name="plusOne"
-                    checked={form.plusOne}
-                    onChange={() => setForm((f) => ({ ...f, plusOne: true }))}
-                    className="accent-[var(--deep-taupe)]"
-                  />
-                  Yes
-                </label>
-              </div>
-            </fieldset>
+            <Field
+              label="Number of guests (including you)"
+              error={errors.partySize}
+              htmlFor="partySize"
+            >
+              <select
+                id="partySize"
+                name="partySize"
+                value={form.partySize}
+                onChange={(e) => {
+                  const partySize = Number(e.target.value);
+                  setForm((f) => ({
+                    ...f,
+                    partySize,
+                    companions: Array.from(
+                      { length: Math.max(0, partySize - 1) },
+                      (_, i) => f.companions[i] ?? "",
+                    ),
+                  }));
+                  setErrors((current) => ({ ...current, companions: undefined }));
+                }}
+                className={inputClass}
+              >
+                {Array.from({ length: MAX_PARTY_SIZE }, (_, i) => i + 1).map(
+                  (size) => (
+                    <option key={size} value={size}>
+                      {size === 1 ? "1 — Just me" : size}
+                    </option>
+                  ),
+                )}
+              </select>
+              <p className="mt-1.5 font-serif text-sm text-[var(--deep-taupe)]/60">
+                Up to {MAX_PARTY_SIZE} people in total, including yourself.
+              </p>
+            </Field>
 
-            {form.plusOne ? (
+            {form.companions.map((name, index) => (
               <Field
-                label="Plus one name"
-                error={errors.plusOneName}
-                htmlFor="plusOneName"
+                key={index}
+                label={`Name of guest ${index + 2}`}
+                error={errors.companions?.[index] || undefined}
+                htmlFor={`companion-${index}`}
               >
                 <input
-                  id="plusOneName"
-                  name="plusOneName"
-                  value={form.plusOneName}
-                  onChange={(e) =>
-                    setForm((f) => ({
-                      ...f,
-                      plusOneName: e.target.value,
-                    }))
-                  }
+                  id={`companion-${index}`}
+                  name={`companion-${index}`}
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setForm((f) => {
+                      const companions = [...f.companions];
+                      companions[index] = value;
+                      return { ...f, companions };
+                    });
+                  }}
                   className={inputClass}
+                  placeholder="Person coming with you"
                 />
               </Field>
-            ) : null}
+            ))}
 
             <Field label="Wishes (optional)" htmlFor="wishes">
               <textarea

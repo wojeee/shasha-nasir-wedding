@@ -34,9 +34,11 @@ Local fallback still works with `public/video/hero.mp4` if the env var is unset.
 
 Create a Google Sheet named e.g. **Shasha Nasir RSVPs** with this header row:
 
-| A | B | C | D | E | F | G |
-|---|---|---|---|---|---|---|
-| Timestamp | Guest Name | Contact | Plus One | Plus One Name | Wishes | Display Wish |
+| A | B | C | D | E | F | G | H | I | J | K |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Timestamp | Guest Name | Contact | Plus One | Plus One Name | Wishes | Display Wish | Party Size | Guest 2 | Guest 3 | Guest 4 |
+
+Keep **Wishes** and **Display Wish** in columns F and G. Additional guests are written after those columns, and their names are also joined into **Plus One Name** so older script deployments still store them. A party is at most 4 people, including the guest who RSVPs. After changing the script, deploy a new web app version.
 
 ### 2. Install the script
 
