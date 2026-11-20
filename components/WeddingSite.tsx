@@ -7,7 +7,7 @@ import { WordsSection } from "@/components/WordsSection";
 import { InviteSection } from "@/components/InviteSection";
 import { WishesCarousel } from "@/components/WishesCarousel";
 import { AboutSection } from "@/components/AboutSection";
-import { CtaSection } from "@/components/CtaSection";
+import { GiftSection } from "@/components/GiftSection";
 import { Footer } from "@/components/Footer";
 import { RsvpProvider } from "@/components/RsvpProvider";
 import { RsvpModal } from "@/components/RsvpModal";
@@ -65,7 +65,7 @@ export function WeddingSite() {
         <InviteSection />
         <WishesCarousel />
         <AboutSection />
-        <CtaSection />
+        <GiftSection />
         <Footer />
       </main>
       {opened ? (

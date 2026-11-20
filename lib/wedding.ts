@@ -46,9 +46,25 @@ export const wedding = {
       "/images/photo-6.jpg",
     ],
   },
-  cta: {
-    heading: "We Cannot Wait To Celebrate With You",
-    body: "Please let us know if you will be joining us on our special day.",
+  gift: {
+    heading: "Wedding Gift",
+    body: "Your presence at our wedding is enough. For those who would like to send a wedding gift, you may do so through the accounts below.",
+    addressNote:
+      "If you would like our address, please contact the bride or groom.",
+    accounts: [
+      {
+        id: "bride",
+        bank: "Maybank",
+        accountName: "Nur Aisyah Nabilla Abdullah",
+        accountNumber: "123456789012",
+      },
+      {
+        id: "groom",
+        bank: "CIMB",
+        accountName: "Muhammad Nasiruddin bin Taha",
+        accountNumber: "098765432109",
+      },
+    ],
   },
   seedWishes: [
     {
