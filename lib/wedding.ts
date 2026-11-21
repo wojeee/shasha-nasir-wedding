@@ -48,23 +48,14 @@ export const wedding = {
   },
   gift: {
     heading: "Wedding Gift",
-    body: "Your presence at our wedding is enough. For those who would like to send a wedding gift, you may do so through the accounts below.",
+    body: "Your presence at our wedding is enough. For those who would like to send a wedding gift, you may do so with the QR code below.",
     addressNote:
       "If you would like our address, please contact the bride or groom.",
-    accounts: [
-      {
-        id: "bride",
-        bank: "Maybank",
-        accountName: "Nur Aisyah Nabilla Abdullah",
-        accountNumber: "123456789012",
-      },
-      {
-        id: "groom",
-        bank: "CIMB",
-        accountName: "Muhammad Nasiruddin bin Taha",
-        accountNumber: "098765432109",
-      },
-    ],
+    qr: {
+      src: "/images/qr-acc.jpg",
+      accountName: "Muhammad Nasiruddin bin Taha",
+      downloadName: "nasir-wedding-gift-qr.jpg",
+    },
   },
   seedWishes: [
     {
