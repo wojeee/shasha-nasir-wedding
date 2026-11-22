@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { CoverGate } from "@/components/CoverGate";
-import { VideoHero } from "@/components/VideoHero";
+import { HERO_PLAY_EVENT, VideoHero } from "@/components/VideoHero";
 import { WordsSection } from "@/components/WordsSection";
 import { InviteSection } from "@/components/InviteSection";
 import { WishesCarousel } from "@/components/WishesCarousel";
@@ -27,6 +27,7 @@ export function WeddingSite() {
       );
     }
     setOpened(true);
+    window.dispatchEvent(new Event(HERO_PLAY_EVENT));
     window.scrollTo(0, 0);
   }, []);
 

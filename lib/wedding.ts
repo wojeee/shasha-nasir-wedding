@@ -3,6 +3,7 @@ export const wedding = {
   groom: "Nasir",
   coupleNames: "Shasha & Nasir",
   tagline: "The Wedding Of",
+  heroVideoId: "HSK6B9t1DIg",
   dateDisplay: "Sunday, 17 January 2027",
   dateShort: "17 . 01 . 2027",
   timeDisplay: "10:00 AM – 1:00 PM",

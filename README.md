@@ -22,11 +22,11 @@ When ready, drop media here:
 
 | Asset | Path |
 |-------|------|
-| Hero loop video | Upload to **Vercel Blob (public)** and set `NEXT_PUBLIC_HERO_VIDEO_URL` |
+| Hero loop video | Unlisted YouTube video. Set `heroVideoId` in `lib/wedding.ts` |
 | Hero poster (optional) | `public/images/hero-poster.svg` (replace with JPG/PNG) |
 | About photos | `public/images/photo-1.jpg` … `photo-6.jpg` |
 
-Local fallback still works with `public/video/hero.mp4` if the env var is unset.
+The hero plays that YouTube video muted and looping. Embedding must stay enabled on the video.
 
 ## Google Sheets + Apps Script
 
